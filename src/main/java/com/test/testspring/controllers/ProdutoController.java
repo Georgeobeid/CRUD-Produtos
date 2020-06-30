@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class ProdutoController {
 
     @Autowired
@@ -43,6 +44,11 @@ public class ProdutoController {
         }
     }
 
+    //Teste
+    @GetMapping("/produtos/nome/{nome}")
+    public List<ProdutoModelo> getOneProdutoNome( @PathVariable(value = "nome") String nome){
+        return produtoRepositry.findByNome(nome);
+    }
     @PutMapping("/produtos/{id}")
     public ResponseEntity<ProdutoModelo> updateProduto(@PathVariable(value = "id") long id, @RequestBody @Validated ProdutoModelo produtoE){
         Optional<ProdutoModelo> produto=produtoRepositry.findById(id);
